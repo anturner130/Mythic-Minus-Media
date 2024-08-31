@@ -1,0 +1,16 @@
+## Interface: 110000
+
+## Title: Mythic Minus Media
+## Notes: Media for Mythic Minus Guild on Mal'Ganis
+## Version: 0.0.1
+## IconTexture: Interface\AddOns\NorthernSkyMedia\Media\NSLogo.blp
+## Author: Turner
+## DefaultState: Enable
+
+Libs\LibStub.lua
+Libs\CallbackHandler-1.0.lua
+Libs\LibSharedMedia-3.0.lua
+
+MythicMinusMedia.lua
+MMNickNamesGrid2.lua
+MMNickNamesElvUI.lua
