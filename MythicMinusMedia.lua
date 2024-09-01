@@ -1,26 +1,39 @@
 local LSM = LibStub("LibSharedMedia-3.0")
 MMMedia = {}
+MMMedia["name"] = "Mythic Minus Media"
+MMMedia.loaded = false
+MMMedia.loaders = {} -- Files to run after variables are loaded
+
+
+local frame = CreateFrame("Frame")
+frame:SetScript("OnEvent", function(self, event, arg1)
+    if event == "ADDON_LOADED" and arg1 == "MythicMinusMedia" then
+        MMMedia.loaded = true
+        print("Mythic Minus Media loaded")
+
+        -- Set default values if they don't exist
+        if MMMConfig["CellNicknames"] == nil then MMMConfig["CellNicknames"] = true end
+        if MMMConfig["DefaultNicknames"] == nil then MMMConfig["DefaultNicknames"] = true end
+        if MMMConfig["ElvuiNicknames"] == nil then MMMConfig["ElvuiNicknames"] = true end
+        if MMMConfig["GridNicknames"] == nil then MMMConfig["GridNicknames"] = true end
+        if MMMConfig["VuhdoNicknames"] == nil then MMMConfig["VuhdoNicknames"] = true end
+
+
+        -- Execute the loaders
+        for key, loader in pairs(MMMedia.loaders) do       
+            if MMMConfig[key] then
+                loader()
+            end
+        end
+    end
+end)
+
+
+frame:RegisterEvent("ADDON_LOADED")
+frame:RegisterEvent("PLAYER_LOGOUT")
 
 --Sounds
-LSM:Register("sound","Macro", [[Interface\Addons\MythicMinusMedia\Media\Sounds\macro.mp3]])
-LSM:Register("sound","01", [[Interface\Addons\MythicMinusMedia\Media\Sounds\1.ogg]])
-LSM:Register("sound","02", [[Interface\Addons\MythicMinusMedia\Media\Sounds\2.ogg]])
-LSM:Register("sound","03", [[Interface\Addons\MythicMinusMedia\Media\Sounds\3.ogg]])
-LSM:Register("sound","04", [[Interface\Addons\MythicMinusMedia\Media\Sounds\4.ogg]])
-LSM:Register("sound","05", [[Interface\Addons\MythicMinusMedia\Media\Sounds\5.ogg]])
-LSM:Register("sound","06", [[Interface\Addons\MythicMinusMedia\Media\Sounds\6.ogg]])
-LSM:Register("sound","07", [[Interface\Addons\MythicMinusMedia\Media\Sounds\7.ogg]])
-LSM:Register("sound","08", [[Interface\Addons\MythicMinusMedia\Media\Sounds\8.ogg]])
-LSM:Register("sound","09", [[Interface\Addons\MythicMinusMedia\Media\Sounds\9.ogg]])
-LSM:Register("sound","10", [[Interface\Addons\MythicMinusMedia\Media\Sounds\10.ogg]])
-LSM:Register("sound","Dispel", [[Interface\Addons\MythicMinusMedia\Media\Sounds\Dispel.ogg]])
+LSM:Register("sound", "Trump Stroke", [[Interface\Addons\MythicMinusMedia\Media\Sounds\trump_stroke.ogg]])
+
 -- --Fonts
-LSM:Register("font","Expressway", [[Interface\Addons\MythicMinusMedia\Media\Fonts\Expressway.TTF]])
--- --StatusBars
--- LSM:Register("statusbar","Atrocity", [[Interface\Addons\MythicMinusMedia\Media\StatusBars\Atrocity]])
--- Open WA Options
-function MMMedia.OpenWA()
-    WeakAuras.OpenOptions()
-end
-
-
+LSM:Register("font", "Expressway", [[Interface\Addons\MythicMinusMedia\Media\Fonts\Expressway.TTF]])

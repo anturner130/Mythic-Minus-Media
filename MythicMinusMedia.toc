@@ -6,11 +6,13 @@
 ## IconTexture: Interface\AddOns\MythicMinusMedia\Media\MMLogo.blp
 ## Author: Turner
 ## DefaultState: Enable
+## SavedVariables: MMMConfig
 
-Libs\LibStub.lua
-Libs\CallbackHandler-1.0.lua
-Libs\LibSharedMedia-3.0.lua
+Libs\Libs.xml
+
 
 MythicMinusMedia.lua
-MMNickNamesGrid2.lua
-MMNickNamesElvUI.lua
+MythicMinusMediaOptions.lua
+Nicknames/Nicknames.xml
+
+
