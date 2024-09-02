@@ -1,4 +1,5 @@
 MMMedia.loaders["ElvuiNicknames"] = function()
+	debug("ElvuiNicknames loader")
 	if ElvUF and ElvUF.Tags then
 		ElvUF.Tags.Events['MMNickName'] = 'UNIT_NAME_UPDATE'
 		ElvUF.Tags.Events['MMNickName:Short'] = 'UNIT_NAME_UPDATE'

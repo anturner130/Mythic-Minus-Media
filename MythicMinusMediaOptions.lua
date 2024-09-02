@@ -60,6 +60,16 @@ vuhdoNicknamesCheckbox:SetScript("OnClick", function(self)
     reloadButton:Show()
 end)
 
+-- Add a checkbox for GuildNicknames
+local guildNicknamesCheckbox = CreateFrame("CheckButton", "GuildNicknamesCheckbox", optionsPanel, "InterfaceOptionsCheckButtonTemplate")
+guildNicknamesCheckbox:SetPoint("TOPLEFT", vuhdoNicknamesCheckbox, "BOTTOMLEFT", 0, -8)
+guildNicknamesCheckbox.Text:SetText("Enable Guild Nicknames")
+guildNicknamesCheckbox:SetScript("OnClick", function(self)
+    MMMConfig["GuildNicknames"] = self:GetChecked()
+    reloadLabel:Show()
+    reloadButton:Show()
+end)
+
 -- Add a button to reset all settings
 
 reloadButton:SetPoint("BOTTOMLEFT", 16, 16)

@@ -1,4 +1,5 @@
 MMMedia.loaders["CellNicknames"] = function()
+    debug("CellNicknames loader")
     if not Cell then return end
 
     local F = Cell.funcs

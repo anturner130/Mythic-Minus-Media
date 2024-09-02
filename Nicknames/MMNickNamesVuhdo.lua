@@ -1,4 +1,5 @@
 MMMedia.loaders["VuhdoNicknames"] = function()
+    debug("VuhdoNicknames loader")
     if not NickTag then return end
 
     -- Override the GetNickname function

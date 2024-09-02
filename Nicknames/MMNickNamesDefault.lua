@@ -1,4 +1,5 @@
 MMMedia.loaders["DefaultNicknames"] = function()
+    debug("DefaultNicknames loader")
     -- Create a function to override the name display
     local function OverrideRaidFrameNames(frame)
         -- Check if the frame has a unit associated (e.g., "raid1", "raid2")
