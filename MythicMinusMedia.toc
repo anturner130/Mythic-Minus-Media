@@ -10,9 +10,12 @@
 
 Libs\Libs.xml
 
+MMAlias.lua
+MMAPI.lua
 
 MythicMinusMedia.lua
 MythicMinusMediaOptions.lua
+Connectors.lua
 Nicknames/Nicknames.xml
 
 

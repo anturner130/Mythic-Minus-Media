@@ -3,6 +3,7 @@ local optionsPanel = CreateFrame("Frame", "MythicMinusMediaOptionsPanel", Interf
 optionsPanel.name = MMMedia.name
 
 local reloadLabel = optionsPanel:CreateFontString(nil, "ARTWORK", "GameFontNormal")
+local reloadButton = CreateFrame("Button", "ReloadButton", optionsPanel, "UIPanelButtonTemplate")
 
 -- Add a title to the options panel
 local title = optionsPanel:CreateFontString(nil, "ARTWORK", "GameFontNormalLarge")
@@ -16,6 +17,7 @@ defaultNicknamesCheckbox.Text:SetText("Enable Default Nicknames")
 defaultNicknamesCheckbox:SetScript("OnClick", function(self)
     MMMConfig["DefaultNicknames"] = self:GetChecked()
     reloadLabel:Show()
+    reloadButton:Show()
 end)
 
 -- Add a checkbox for ElvuiNicknames
@@ -25,6 +27,7 @@ elvuiNicknamesCheckbox.Text:SetText("Enable Elvui Nicknames")
 elvuiNicknamesCheckbox:SetScript("OnClick", function(self)
     MMMConfig["ElvuiNicknames"] = self:GetChecked()
     reloadLabel:Show()
+    reloadButton:Show()
 end)
 
 -- Add a checkbox for GridNicknames
@@ -34,6 +37,7 @@ gridNicknamesCheckbox.Text:SetText("Enable Grid Nicknames")
 gridNicknamesCheckbox:SetScript("OnClick", function(self)
     MMMConfig["GridNicknames"] = self:GetChecked()
     reloadLabel:Show()
+    reloadButton:Show()
 end)
 
 -- Add a checkbox for CellNicknames
@@ -43,6 +47,7 @@ cellNicknamesCheckbox.Text:SetText("Enable Cell Nicknames")
 cellNicknamesCheckbox:SetScript("OnClick", function(self)
     MMMConfig["CellNicknames"] = self:GetChecked()
     reloadLabel:Show()
+    reloadButton:Show()
 end)
 
 -- Add a checkbox for VuhdoNicknames
@@ -52,29 +57,22 @@ vuhdoNicknamesCheckbox.Text:SetText("Enable Vuhdo Nicknames")
 vuhdoNicknamesCheckbox:SetScript("OnClick", function(self)
     MMMConfig["VuhdoNicknames"] = self:GetChecked()
     reloadLabel:Show()
+    reloadButton:Show()
 end)
 
 -- Add a button to reset all settings
-local resetButton = CreateFrame("Button", "ResetButton", optionsPanel, "UIPanelButtonTemplate")
-resetButton:SetPoint("BOTTOMLEFT", 16, 16)
-resetButton:SetSize(100, 22)
-resetButton:SetText("Reset Settings")
-resetButton:SetScript("OnClick", function(self)
-    MMMConfig["DefaultNicknames"] = true
-    MMMConfig["ElvuiNicknames"] = true
-    MMMConfig["GridNicknames"] = true
-    MMMConfig["CellNicknames"] = true
-    MMMConfig["VuhdoNicknames"] = true
-    defaultNicknamesCheckbox:SetChecked(true)
-    elvuiNicknamesCheckbox:SetChecked(true)
-    gridNicknamesCheckbox:SetChecked(true)
-    cellNicknamesCheckbox:SetChecked(true)
-    vuhdoNicknamesCheckbox:SetChecked(true)
-    reloadLabel:Show()
+
+reloadButton:SetPoint("BOTTOMLEFT", 16, 16)
+reloadButton:SetSize(100, 22)
+reloadButton:SetText("Reload UI")
+reloadButton:SetScript("OnClick", function(self)
+    -- Reload the UI
+    ReloadUI()
 end)
+reloadButton:Hide()
 
 -- Add a label to reload the UI with default state hidden
-reloadLabel:SetPoint("BOTTOMLEFT", resetButton, "BOTTOMRIGHT", 8, 0)
+reloadLabel:SetPoint("BOTTOMLEFT", reloadButton, "BOTTOMRIGHT", 8, 0)
 reloadLabel:SetText("Reload the UI to apply changes")
 reloadLabel:Hide()
 
