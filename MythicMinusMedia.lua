@@ -9,16 +9,17 @@ local frame = CreateFrame("Frame")
 frame:SetScript("OnEvent", function(self, event, arg1)
     if event == "ADDON_LOADED" and arg1 == "MythicMinusMedia" then
         MMMedia.loaded = true
-        print("Mythic Minus Media loaded")
 
-        -- Set default values if they don't exist
-        if MMMConfig["CellNicknames"] == nil then MMMConfig["CellNicknames"] = true end
-        if MMMConfig["DefaultNicknames"] == nil then MMMConfig["DefaultNicknames"] = true end
-        if MMMConfig["ElvuiNicknames"] == nil then MMMConfig["ElvuiNicknames"] = true end
-        if MMMConfig["GridNicknames"] == nil then MMMConfig["GridNicknames"] = true end
-        if MMMConfig["VuhdoNicknames"] == nil then MMMConfig["VuhdoNicknames"] = true end
-
-
+        -- Create the config table if it doesn't exist
+        if not MMMConfig then
+            MMMConfig = {
+                ["CellNicknames"] = true,
+                ["DefaultNicknames"] = true,
+                ["ElvuiNicknames"] = true,
+                ["GridNicknames"] = true,
+                ["VuhdoNicknames"] = true
+            }
+        end
         -- Execute the loaders
         for key, loader in pairs(MMMedia.loaders) do       
             if MMMConfig[key] then
