@@ -4,7 +4,8 @@ MMWeakAuraUpdater.WeakAuras = {
     ["brII87rOnHy"] = {
         ["name"] = "Mythic- Core",
         ["version"] = 27,
-        ["import"] = MMWACore
+        ["import"] = MMWACore,
+        ["found"] = false
     }
 }
 
@@ -21,12 +22,22 @@ function MMWeakAuraUpdater:CheckUpdateWeakAuras()
         if MMWeakAuraUpdater.WeakAuras[pack.uid] then
             debug("Found " .. MMWeakAuraUpdater.WeakAuras[pack.uid].name)
             local wa = MMWeakAuraUpdater.WeakAuras[pack.uid]
+            wa.found = true
             if pack.version < wa.version then
                 debug("Updating " .. wa.name .. " to version " .. wa.version)
                 -- Add to WAsToUpdate
                 wa["prvVersion"] = pack.version
                 WAsToUpdate[pack.uid] = wa
             end
+        end
+    end
+
+    -- Check if any WA's were not found and add them to WAsToUpdate
+    for key, wa in pairs(MMWeakAuraUpdater.WeakAuras) do
+        if not wa.found then
+            debug("WeakAura not found: " .. wa.name)
+            wa.prvVersion = 0
+            WAsToUpdate[key] = wa
         end
     end
 
@@ -78,7 +89,7 @@ function MMWeakAuraUpdater:PromptToUpdateWeakAuras(WAsToUpdate)
     frame.updateButton:SetScript("OnClick", function(self)
         for key, wa in pairs(WAsToUpdate) do
             debug("Updating " .. wa.name)
-            MMWeakAuraUpdater:UpdateWeakAura(key, wa.import)
+            MMWeakAuraUpdater:UpdateWeakAura(key, wa)
         end
         frame:Hide()
     end)
@@ -90,14 +101,18 @@ function MMWeakAuraUpdater:OnUpdateComplete()
 end
 
 -- Update weakauras
-function MMWeakAuraUpdater:UpdateWeakAura(uid, import)
-    debug("MMWeakAuraUpdater:UpdateWeakAura " .. uid)
-    if not WeakAuras or not uid or not  import then
+function MMWeakAuraUpdater:UpdateWeakAura(uid, wa)
+    debug("MMWeakAuraUpdater:UpdateWeakAura " .. wa.name)
+    if not WeakAuras or not wa then
         debug("WeakAuras is not installed")
         return
     end
 
-    debug("Updating " .. uid)
-    WeakAuras.Import(import, uid, nil, nil)
+    -- Try/Catch the import
+    appId = nil
+    if wa.found then
+        appId = uid
+    end
+    WeakAuras.Import(wa.import, appId, nil, nil)
 end
 
