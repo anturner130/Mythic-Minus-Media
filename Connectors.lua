@@ -1,9 +1,11 @@
 -- Desc: Contains all the connectors for to interact with other addons or weakauras
 
 -- Connections for Northern Sky WA's
-NSAPI = NSAPI or {}
-function NSAPI:GetName(name)
-    return MMAPI:GetName(name)
+if NSAPI then
+    -- Get the name of a spell
+    function NSAPI:GetName(name)
+        return MMAPI:GetName(name)
+    end
 end
 
 -- Connections for Liquid WA's

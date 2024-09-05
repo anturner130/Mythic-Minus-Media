@@ -9,13 +9,16 @@
 ## SavedVariables: MMMConfig
 
 Libs\Libs.xml
+WA\WA.xml
 
 MMAlias.lua
 MMAPI.lua
 
 MythicMinusMedia.lua
 MythicMinusMediaOptions.lua
+MMWAUpdater.lua
 Connectors.lua
 Nicknames/Nicknames.xml
+
 
 

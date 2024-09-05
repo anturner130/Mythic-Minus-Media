@@ -5,7 +5,7 @@ MMMedia.loaded = false
 MMMedia.loaders = {}         -- Runs after this addon is loaded
 MMMedia.externalLoaders = {} -- Runs after external addon is loaded
 
-local DEBUG = false
+local DEBUG = true
 DEBUG = DEBUG and UnitName("player") == "Turnerz" --safe guard so releases never have debug on
 function debug(msg)
     if DEBUG then print("|cFF00FF00[DEBUG]|r " .. msg) end
@@ -44,6 +44,11 @@ frame:SetScript("OnEvent", function(self, event, arg1)
         if MMMedia.externalLoaders[arg1] and MMMedia.externalLoaders[arg1] == true then
             debug("Running external loader for " .. arg1)
             MMMedia.externalLoaders[arg1]()
+        end
+
+        if(arg1 == "WeakAuras")
+        then
+            MMWeakAuraUpdater:CheckUpdateWeakAuras()
         end
     end
 end)

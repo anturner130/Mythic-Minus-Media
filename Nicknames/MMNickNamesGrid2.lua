@@ -1,4 +1,3 @@
-debug("Nicknames/MMNickNamesGrid2.lua")
 MMMedia.loaders["GridNicknames"] = function()
 	debug("GridNicknames loader")
 	if not Grid2 then return end
