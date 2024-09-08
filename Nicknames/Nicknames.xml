@@ -7,5 +7,4 @@
 	<Script file="MMNickNamesElvUI.lua" />
 	<Script file="MMNickNamesGrid2.lua" />
 	<Script file="MMNickNamesDefault.lua" />
-	<Script file="MMNickNamesFN.lua" />
 </Ui>
