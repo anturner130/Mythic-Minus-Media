@@ -59,6 +59,7 @@ frame:RegisterEvent("PLAYER_LOGOUT")
 
 --Sounds
 LSM:Register("sound", "Trump Stroke", [[Interface\Addons\MythicMinusMedia\Media\Sounds\trump_stroke.ogg]])
+LSM:Register("sound", "Mario Jump", [[Interface\Addons\MythicMinusMedia\Media\Sounds\mario_jump.ogg]])
 
 -- --Fonts
 LSM:Register("font", "Expressway", [[Interface\Addons\MythicMinusMedia\Media\Fonts\Expressway.TTF]])

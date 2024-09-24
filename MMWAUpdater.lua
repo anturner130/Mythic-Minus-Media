@@ -3,7 +3,7 @@ MMWeakAuraUpdater = {}
 MMWeakAuraUpdater.WeakAuras = {
     ["brII87rOnHy"] = {
         ["name"] = "Mythic- Core",
-        ["version"] = 27,
+        ["version"] = 28,
         ["import"] = MMWACore,
         ["found"] = false
     }

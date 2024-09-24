@@ -2,7 +2,7 @@
 
 ## Title: Mythic Minus Media
 ## Notes: Media for Mythic Minus Guild on Mal'Ganis
-## Version: 0.0.7
+## Version: 0.1.0
 ## IconTexture: Interface\AddOns\MythicMinusMedia\Media\Images\MMLogo.blp
 ## Author: Turner
 ## DefaultState: Enable

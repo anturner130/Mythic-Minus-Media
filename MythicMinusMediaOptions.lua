@@ -94,7 +94,6 @@ if InterfaceOptions_AddCategory then
 else
 	local category, layout = Settings.RegisterCanvasLayoutCategory(optionsPanel, optionsPanel.name);
 	Settings.RegisterAddOnCategory(category);
-	addon.settingsCategory = category
 end
 
 
