@@ -58,7 +58,7 @@ function MMWeakAuraUpdater:PromptToUpdateWeakAuras()
         end
     end
 
-    local scalingHeight = 10 * #MMWeakAuraUpdater.WeakAuras
+    local scalingHeight = 20 * #MMWeakAuraUpdater.WeakAuras
     -- Create a frame to prompt the user to update weakauras
     local frame = CreateFrame("Frame", "MMWeakAuraUpdaterFrame", UIParent, "BasicFrameTemplateWithInset")
     frame:SetSize(350, 50 + scalingHeight)
