@@ -1,7 +1,6 @@
 import requests
 from requests.auth import HTTPBasicAuth
 import os
-import base64
 
 WAGO_API_ENDPOINT = "https://data.wago.io"
 
