@@ -20,7 +20,7 @@ local Briknames = BrikNicknames
 if Briknames then
     -- Iterate over all the names and add them to the MMAlias table
     local lastNick = nil
-    local namesList = nil
+    local namesList = {}
     for nick, name in pairs(MMAlias) do
         if nick ~= lastNick then
             if lastNick then
