@@ -3,6 +3,12 @@ name: Update WAs and Release
 on:
   schedule:
     - cron: '0 * * * *' # Runs every hour
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+  
 
 jobs:
   update-and-release:
