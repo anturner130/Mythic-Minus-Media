@@ -50,6 +50,11 @@ frame:SetScript("OnEvent", function(self, event, arg1)
         then
             MMWeakAuraUpdater:CheckUpdateWeakAuras()
         end
+
+        if(arg1 == "Northern Sky Externals")
+        then
+            debug("NSE")
+        end
     end
 end)
 
@@ -58,6 +63,8 @@ frame:RegisterEvent("ADDON_LOADED")
 frame:RegisterEvent("PLAYER_LOGOUT")
 
 --Sounds
+-- register trump stroke with purple name
+
 LSM:Register("sound", "Trump Stroke", [[Interface\Addons\MythicMinusMedia\Media\Sounds\trump_stroke.ogg]])
 LSM:Register("sound", "Mario Jump", [[Interface\Addons\MythicMinusMedia\Media\Sounds\mario_jump.ogg]])
 
