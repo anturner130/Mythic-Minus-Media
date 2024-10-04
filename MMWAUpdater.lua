@@ -58,10 +58,10 @@ function MMWeakAuraUpdater:PromptToUpdateWeakAuras()
         end
     end
 
-    local scalingHeight = 20 * #MMWeakAuraUpdater.WeakAuras
+    local scalingHeight = 10 * #MMWeakAuraUpdater.WeakAuras
     -- Create a frame to prompt the user to update weakauras
     local frame = CreateFrame("Frame", "MMWeakAuraUpdaterFrame", UIParent, "BasicFrameTemplateWithInset")
-    frame:SetSize(350, 60 + scalingHeight)
+    frame:SetSize(350, 50 + scalingHeight)
     frame:SetPoint("CENTER")
     frame.title = frame:CreateFontString(nil, "OVERLAY", "GameFontHighlight")
     frame.title:SetPoint("CENTER", frame.TitleBg, "CENTER", 0, 0)

@@ -38,7 +38,7 @@ def fetch_latest_version(endpoint, wa):
     response = requests.get(endpoint, headers=headers)
     if response.status_code == 200:
         data = response.json()      
-        wa["name"] = data.get("name")
+        wa["name"] = data.get("name").replace(",", "")
         wa["id"] = data.get("_id")
         latest = data.get("versions").get("versions")[0]
         version = latest.get("version")
