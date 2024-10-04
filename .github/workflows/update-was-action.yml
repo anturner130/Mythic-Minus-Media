@@ -52,11 +52,13 @@ jobs:
         git commit -m "$COMMIT_NOTES"
         git push
 
-    - uses: actions-ecosystem/action-get-latest-tag@v1
-        id: get-latest-tag
-        if: ${{ steps.release-label.outputs.level != null }}
+    - name: Get Latest Tag
+      uses: actions-ecosystem/action-get-latest-tag@v1
+      id: get-latest-tag
+      if: ${{ steps.release-label.outputs.level != null }}
     
-    - uses: actions-ecosystem/action-bump-semver@v1
+    - name: Increase Tag Version
+      uses: actions-ecosystem/action-bump-semver@v1
       id: bump-semver
       if: ${{ steps.release-label.outputs.level != null }}
       with:
