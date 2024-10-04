@@ -16,7 +16,7 @@ end
 
 -- Connections for BrikNicknames
 -- Get a BrikNicknames object but rename to something way better lmao
-local Briknames = BrikNicknames   
+local Briknames = BrikNicknames
 if Briknames then
     -- Iterate over all the names and add them to the MMAlias table
     local lastNick = nil

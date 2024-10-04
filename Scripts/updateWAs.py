@@ -7,6 +7,7 @@ WAGO_API_ENDPOINT = "https://data.wago.io"
 script_path = os.path.dirname(os.path.realpath(__file__))
 mmwa_csv_path = os.path.join(script_path, "WAs.csv")
 mmwa_path = os.path.join(script_path, "..", "WA")
+mmwa_updates_path = os.path.join(script_path, "Updates.txt")
 mmwa_was_path = os.path.join(mmwa_path, "MMWAs.lua")
 
 # Read the csv file into a list of objects {namm, slug}
@@ -57,8 +58,9 @@ def fetch_latest_version(endpoint, wa):
         if response.status_code == 200:        
             encoded = response.json().get("encoded")
             wa["embed"] = encoded
+            wa["prvVersion"] = wa["version"]
             wa["version"] = version
-            if int(version) > int(wa["version"]):
+            if int(version) > int(wa["prvVersion"]):
                 wa["update"] = True
                 return 1
         else:
@@ -77,7 +79,19 @@ def main():
         endpoint = WAGO_API_ENDPOINT + f'/lookup/wago?id={slug}'
         if fetch_latest_version(endpoint, wa) == 1:
             updateFound = True
-    
+            
+    for slug, wa in WAs.items():
+        if wa.get("update"):
+            print(f"Updating {wa['name']} from {wa['prvVersion']} to {wa['version']}")
+            # Write all update notes to file
+            with open(mmwa_updates_path, "w") as f:
+                f.write(f"{wa['name']} updated from {wa['prvVersion']} to {wa['version']}\n")
+
+    if not updateFound:
+        print("No updates found")
+        with open(mmwa_updates_path, "a") as f:
+                f.write("")
+            
     # Write the updated json object to the list file
     with open(mmwa_was_path, "w") as f:
         f.write("MMWAs = {")
@@ -96,6 +110,9 @@ def main():
     with open(mmwa_csv_path, "w") as f:
         for slug, wa in WAs.items():
             f.write(f"{wa['name']}, {wa['uid']}, {slug}, {wa['version']}\n")  
+
+
+    return 0
 
 if __name__ == "__main__":
     main()

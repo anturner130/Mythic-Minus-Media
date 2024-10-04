@@ -31,6 +31,13 @@ jobs:
     - name: Run updateWAs.py
       run: python Scripts/updateWAs.py
 
+    - name: Read commit notes
+      id: read_commit_notes
+      run: |
+        COMMIT_NOTES=$(cat Scripts/Updates.txt)
+        echo "commit_notes=$COMMIT_NOTES" >> $GITHUB_ENV
+
+
     - name: Commit and push changes
       run: |
         git config --global user.name 'github-actions[bot]'
@@ -38,11 +45,10 @@ jobs:
         git add .
         git commit -m 'Update WAs'
         git push
-      continue-on-error: true
 
     - name: Create Release
       id: create_release
-      uses: actions/create-release@v1
+      uses: actions/create-release@v2
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
