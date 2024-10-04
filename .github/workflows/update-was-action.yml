@@ -43,6 +43,11 @@ jobs:
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
         git add .
+        git diff-index --quiet HEAD || echo "changes_detected=true" >> $GITHUB_ENV
+        if [ -z "$changes_detected" ]; then
+          echo "No changes detected. Exiting job."
+          exit 0
+        fi
         git commit -m "$COMMIT_NOTES"
         git push
 
