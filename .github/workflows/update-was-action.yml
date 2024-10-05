@@ -35,7 +35,7 @@ jobs:
       id: read_commit_notes
       run: |
         COMMIT_NOTES=$(cat Scripts/Updates.txt)
-        echo "commit_notes=$COMMIT_NOTES" >> $GITHUB_ENV
+        echo "commit_notes=$COMMIT_NOTES" >> $GITHUB_OUTPUT
 
 
     - name: Commit and push changes
@@ -48,7 +48,7 @@ jobs:
           echo "No changes detected. Exiting job."
           exit 0
         fi
-        git commit -m "${{ steps.read_commit_notes.outputs.COMMIT_NOTES }}"
+        git commit -m "${{ steps.read_commit_notes.outputs.commit_notes }}"
         git push
 
     - name: Get Latest Tag
