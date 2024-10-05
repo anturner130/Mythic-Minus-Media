@@ -60,7 +60,7 @@ jobs:
       id: bump-semver
       with:
         current_version: ${{ steps.get-latest-tag.outputs.tag }}
-        level: ${{ steps.release-label.outputs.level }}
+        level: "patch"
 
     - name: Create Release
       id: create_release
@@ -72,3 +72,4 @@ jobs:
         release_name: 'Release v${{ steps.bump-semver.outputs.new_version }}'
         draft: false
         prerelease: false
+        body: ${{ steps.read_commit_notes.outputs.commit_notes }}
