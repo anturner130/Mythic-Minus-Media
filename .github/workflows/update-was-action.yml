@@ -48,7 +48,7 @@ jobs:
           echo "No changes detected. Exiting job."
           exit 0
         fi
-        git commit -m "$COMMIT_NOTES"
+        git commit -m "${{ steps.read_commit_notes.outputs.COMMIT_NOTES }}"
         git push
 
     - name: Get Latest Tag
