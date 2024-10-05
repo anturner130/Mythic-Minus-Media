@@ -54,12 +54,10 @@ jobs:
     - name: Get Latest Tag
       uses: actions-ecosystem/action-get-latest-tag@v1
       id: get-latest-tag
-      if: ${{ steps.release-label.outputs.level != null }}
-    
+
     - name: Increase Tag Version
       uses: actions-ecosystem/action-bump-semver@v1
       id: bump-semver
-      if: ${{ steps.release-label.outputs.level != null }}
       with:
         current_version: ${{ steps.get-latest-tag.outputs.tag }}
         level: ${{ steps.release-label.outputs.level }}
