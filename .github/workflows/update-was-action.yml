@@ -83,4 +83,4 @@ jobs:
         prerelease: false
         body: ${{ steps.read_commit_notes.outputs.commit_notes }}
   
-      if: ${{steps.commit.outputs.build_release}} == 'true'
+      if: ${{steps.commit.outputs.build_release}}
