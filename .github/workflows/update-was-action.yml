@@ -65,7 +65,7 @@ jobs:
         level: "patch"
 
     - name: Print Params
-      id: get-latest-tag
+      id: print-pararms
       run: |
         echo build_release = ${{ steps.commit.outputs.build_release }}
         echo tag = ${{ steps.get-latest-tag.outputs.tag }}
