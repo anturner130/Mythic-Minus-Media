@@ -45,26 +45,26 @@ jobs:
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
         git add .
         if git diff-index --quiet HEAD --; then
-          echo "build_release=false" >> $GITHUB_OUTPUT
+          echo "build_release='false'" >> $GITHUB_OUTPUT
           echo "No changes detected. Exiting job."
           exit 0
         fi
-        echo "build_release=true" >> $GITHUB_OUTPUT
+        echo "build_release='true'" >> $GITHUB_OUTPUT
         git commit -m "${{ steps.read_commit_notes.outputs.commit_notes }}"
         git push
 
     - name: Get Latest Tag
       uses: actions-ecosystem/action-get-latest-tag@v1
       id: get-latest-tag
-      if: success() && ${{steps.commit.outputs.build_release}} == 'true'
-
+      run: echo build_release = ${{ steps.commit.outputs.build_release }}
+      
     - name: Increase Tag Version
       uses: actions-ecosystem/action-bump-semver@v1
       id: bump-semver
       with:
         current_version: ${{ steps.get-latest-tag.outputs.tag }}
         level: "patch"
-      if: success() && ${{steps.commit.outputs.build_release}} == 'true'
+      run: echo ${{ steps.get-latest-tag.outputs.tag }}
 
     - name: Create Release
       id: create_release
@@ -77,4 +77,5 @@ jobs:
         draft: false
         prerelease: false
         body: ${{ steps.read_commit_notes.outputs.commit_notes }}
-      if: success() && ${{steps.commit.outputs.build_release}} == 'true'
+      run: echo ${{ steps.bump-semver.outputs.new_version }}
+      if: ${{steps.commit.outputs.build_release}} == 'true'
