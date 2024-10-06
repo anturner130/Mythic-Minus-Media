@@ -56,7 +56,6 @@ jobs:
     - name: Get Latest Tag
       uses: actions-ecosystem/action-get-latest-tag@v1
       id: get-latest-tag
-      run: echo build_release = ${{ steps.commit.outputs.build_release }}
       
     - name: Increase Tag Version
       uses: actions-ecosystem/action-bump-semver@v1
@@ -64,7 +63,13 @@ jobs:
       with:
         current_version: ${{ steps.get-latest-tag.outputs.tag }}
         level: "patch"
-      run: echo ${{ steps.get-latest-tag.outputs.tag }}
+
+    - name: Print Params
+      id: get-latest-tag
+      run: |
+        echo build_release = ${{ steps.commit.outputs.build_release }}
+        echo tag = ${{ steps.get-latest-tag.outputs.tag }}
+        echo new_version = ${{ steps.bump-semver.outputs.new_version }}
 
     - name: Create Release
       id: create_release
@@ -77,5 +82,5 @@ jobs:
         draft: false
         prerelease: false
         body: ${{ steps.read_commit_notes.outputs.commit_notes }}
-      run: echo ${{ steps.bump-semver.outputs.new_version }}
+  
       if: ${{steps.commit.outputs.build_release}} == 'true'
