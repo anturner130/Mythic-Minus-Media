@@ -44,6 +44,7 @@ jobs:
         git config --global user.name 'github-actions[bot]'
         git config --global user.email 'github-actions[bot]@users.noreply.github.com'
         git add .
+        echo "build_release=true" >> $GITHUB_OUTPUT
         if git diff-index --quiet HEAD --; then
           echo "No changes detected. Exiting job."
           exit 0
@@ -54,6 +55,7 @@ jobs:
     - name: Get Latest Tag
       uses: actions-ecosystem/action-get-latest-tag@v1
       id: get-latest-tag
+      if: steps.commit.outputs.build_release == 'true'
 
     - name: Increase Tag Version
       uses: actions-ecosystem/action-bump-semver@v1
@@ -61,6 +63,7 @@ jobs:
       with:
         current_version: ${{ steps.get-latest-tag.outputs.tag }}
         level: "patch"
+      if: steps.commit.outputs.build_release == 'true'
 
     - name: Create Release
       id: create_release
@@ -73,3 +76,4 @@ jobs:
         draft: false
         prerelease: false
         body: ${{ steps.read_commit_notes.outputs.commit_notes }}
+      if: steps.commit.outputs.build_release == 'true'
