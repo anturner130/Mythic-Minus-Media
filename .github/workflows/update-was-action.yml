@@ -71,6 +71,9 @@ jobs:
         echo tag = ${{ steps.get-latest-tag.outputs.tag }}
         echo new_version = ${{ steps.bump-semver.outputs.new_version }}
 
+    - name: Checkout code
+      uses: actions/checkout@v2
+
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
