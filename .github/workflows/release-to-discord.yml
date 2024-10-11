@@ -14,5 +14,5 @@ jobs:
         uses: SethCohen/github-releases-to-discord@v1.15.1
         with:
           webhook_url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-          username: "Mythic Minus Media Release"
-          avatar_url: "https://cdn-icons-png.flaticon.com/512/25/25231.png"
+          username: "Mythic Minus Media"
+          avatar_url: "https://drive.usercontent.google.com/download?id=1Uhkh7Gt6H7MQY9QLN_fO7BEmhPEuqfL6"
