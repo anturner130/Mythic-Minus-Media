@@ -13,10 +13,19 @@ on:
 jobs:
   update-and-release:
     runs-on: ubuntu-latest
-
     steps:
+
+    - name: Install Token
+      id: my-app
+      uses: getsentry/action-github-app-token@v3.1
+      with:
+        app_id: ${{ secrets.APP_ID }}
+        private_key: ${{ secrets.APP_PRIVATE_KEY }}
+
     - name: Checkout repository
       uses: actions/checkout@v4
+      with:
+        token: ${{ steps.my-app.outputs.token }}
 
     - name: Set up Python
       uses: actions/setup-python@v5
@@ -27,6 +36,7 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r Scripts/requirements.txt
+
 
     - name: Run updateWAs.py
       run: python Scripts/updateWAs.py
@@ -81,7 +91,7 @@ jobs:
       id: create_release
       uses: actions/create-release@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ steps.my-app.outputs.token }}
       with:   
         tag_name: '${{ steps.bump-semver.outputs.new_version}}'
         release_name: 'Release v${{ steps.bump-semver.outputs.new_version }}'
