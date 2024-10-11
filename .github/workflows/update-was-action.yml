@@ -17,7 +17,7 @@ jobs:
 
     - name: Install Token
       id: my-app
-      uses: getsentry/action-github-app-token@v3.1
+      uses: getsentry/action-github-app-token@v3.0.0
       with:
         app_id: ${{ secrets.APP_ID }}
         private_key: ${{ secrets.APP_PRIVATE_KEY }}
