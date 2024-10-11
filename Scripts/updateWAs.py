@@ -1,6 +1,7 @@
 import requests
 from requests.auth import HTTPBasicAuth
 import os
+import time
 
 WAGO_API_ENDPOINT = "https://data.wago.io"
 
@@ -79,6 +80,7 @@ def main():
         endpoint = WAGO_API_ENDPOINT + f'/lookup/wago?id={slug}'
         if fetch_latest_version(endpoint, wa) == 1:
             updateFound = True
+        time.sleep(5) # Sleep for 5 seconds to avoid rate limiting
             
     for slug, wa in WAs.items():
         if wa.get("update"):
