@@ -32,11 +32,19 @@ for line in csv:
     # Push the object into the WAs list
     WAs[slug] = wa
 
-def fetch_latest_version(endpoint, wa):
+def fetch_latest_version(endpoint, wa, retries=0):
+    if retries > 3:
+        print(f"Failed to fetch data from {endpoint} after {retries} retries")
+        return -1
+
     # Fetch data from the endpoint using the API key
     print(f"Fetching data for {wa['name']} from {endpoint}")
     headers = {'User-Agent': 'Mozilla/5.0 (Linux; Android 13; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/116.0.0.0 Mobile Safari/537.36'}
     response = requests.get(endpoint, headers=headers)
+
+    if response.status_code == 429:
+        time.sleep(5)
+        return fetch_latest_version(endpoint, wa, retries + 1)
     if response.status_code == 200:
         data = response.json()      
         wa["name"] = data.get("name").replace(",", "")
@@ -80,7 +88,7 @@ def main():
         endpoint = WAGO_API_ENDPOINT + f'/lookup/wago?id={slug}'
         if fetch_latest_version(endpoint, wa) == 1:
             updateFound = True
-        time.sleep(5) # Sleep for 5 seconds to avoid rate limiting
+        time.sleep(1) # Sleep for 5 seconds to avoid rate limiting
             
     for slug, wa in WAs.items():
         if wa.get("update"):

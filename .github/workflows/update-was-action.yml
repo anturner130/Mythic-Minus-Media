@@ -90,11 +90,3 @@ jobs:
         body: ${{ steps.read_commit_notes.outputs.commit_notes }}
         commitish: ${{ steps.commit.outputs.hash }}
       if: ${{steps.commit.outputs.build_release == 'true'}}
-
-    - name: Github Releases To Discord
-      uses: SethCohen/github-releases-to-discord@v1.15.1
-      with:
-        webhook_url: ${{ secrets.DISCORD_WEBHOOK_URL }}
-        username: "Mythic Minus Media Release"
-        avatar_url: "https://cdn-icons-png.flaticon.com/512/25/25231.png"
-      if: ${{steps.commit.outputs.build_release == 'true'}}
