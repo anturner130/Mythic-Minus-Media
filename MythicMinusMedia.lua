@@ -4,6 +4,7 @@ MMMedia["name"] = "Mythic Minus Media"
 MMMedia.loaded = false
 MMMedia.loaders = {}         -- Runs after this addon is loaded
 MMMedia.externalLoaders = {} -- Runs after external addon is loaded
+local wasLoaded = false
 
 local DEBUG = true
 DEBUG = DEBUG and UnitName("player") == "Turnerz" --safe guard so releases never have debug on
@@ -46,14 +47,10 @@ frame:SetScript("OnEvent", function(self, event, arg1)
             MMMedia.externalLoaders[arg1]()
         end
 
-        if(arg1 == "WeakAuras")
+        if(arg1 >= "WeakAuras" and not wasLoaded)
         then
+            wasLoaded = true
             MMWeakAuraUpdater:CheckUpdateWeakAuras()
-        end
-
-        if(arg1 == "Northern Sky Externals")
-        then
-            debug("NSE")
         end
     end
 end)
