@@ -30,7 +30,7 @@ if Briknames then
             namesList = {}
         end
         -- Add the names to the list
-        namesList.insert(name)
+        table.insert(namesList, name)
     end
     -- Add the last name in the list
     Briknames:AddAlias(lastNick, namesList)
