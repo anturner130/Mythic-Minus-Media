@@ -80,7 +80,6 @@ if WeakAuras then
     debug("WeakAuras installed and already loaded")
     wasLoaded = true
     MMWeakAuraUpdater:CheckUpdateWeakAuras()
-    return
 end
 
 frame:RegisterEvent("ADDON_LOADED")
