@@ -6,10 +6,28 @@ MMMedia.loaders = {}         -- Runs after this addon is loaded
 MMMedia.externalLoaders = {} -- Runs after external addon is loaded
 local wasLoaded = false
 
+
 local DEBUG = true
 DEBUG = DEBUG and UnitName("player") == "Turnerz" --safe guard so releases never have debug on
 function debug(msg)
     if DEBUG then print("|cFF00FF00[DEBUG]|r " .. msg) end
+end
+
+MMMedia.loaders["debug"] = function()
+    DEBUG = true
+    debug("debug loader")
+end
+
+-- Define the slash command handler
+SLASH_MMDEBUG1 = '/mmdebug'
+function SlashCmdList.MMDEBUG(msg, editBox)
+    if msg == '0' then
+        MMMConfig.debug = false
+        print("MMDebug: Debugging disabled.")
+    else
+        MMMConfig.debug = true
+        print("MMDebug: Debugging enabled.")
+    end
 end
 
 local frame = CreateFrame("Frame")
@@ -28,7 +46,8 @@ frame:SetScript("OnEvent", function(self, event, arg1)
                     ["DefaultNicknames"] = true,
                     ["ElvuiNicknames"] = true,
                     ["GridNicknames"] = true,
-                    ["VuhdoNicknames"] = true
+                    ["VuhdoNicknames"] = true,
+                    ["debug"] = false
                 }
             end
 
@@ -47,14 +66,22 @@ frame:SetScript("OnEvent", function(self, event, arg1)
             MMMedia.externalLoaders[arg1]()
         end
 
-        if(arg1 >= "WeakAuras" and not wasLoaded)
+        if(arg1 == "WeakAuras" and not wasLoaded)
         then
+            debug("Updating WeakAuras." .. arg1)
             wasLoaded = true
             MMWeakAuraUpdater:CheckUpdateWeakAuras()
         end
     end
 end)
 
+
+if WeakAuras then
+    debug("WeakAuras installed and already loaded")
+    wasLoaded = true
+    MMWeakAuraUpdater:CheckUpdateWeakAuras()
+    return
+end
 
 frame:RegisterEvent("ADDON_LOADED")
 frame:RegisterEvent("PLAYER_LOGOUT")
@@ -67,3 +94,4 @@ LSM:Register("sound", "Mario Jump", [[Interface\Addons\MythicMinusMedia\Media\So
 
 -- --Fonts
 LSM:Register("font", "Expressway", [[Interface\Addons\MythicMinusMedia\Media\Fonts\Expressway.TTF]])
+
