@@ -1,6 +1,4 @@
-debug("MMWAUpdater.lua loaded")
 MMWeakAuraUpdater = {}
-
 
 -- Read all weakauras from WeakAurasSaved and print them to the console with name, version, and file.
 function MMWeakAuraUpdater:CheckUpdateWeakAuras()
