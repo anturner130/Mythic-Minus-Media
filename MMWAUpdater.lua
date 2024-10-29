@@ -1,6 +1,7 @@
 debug("MMWAUpdater.lua loaded")
 MMWeakAuraUpdater = {}
 
+
 -- Read all weakauras from WeakAurasSaved and print them to the console with name, version, and file.
 function MMWeakAuraUpdater:CheckUpdateWeakAuras()
     debug("MMWeakAuraUpdater:CheckUpdateWeakAuras")
@@ -12,25 +13,30 @@ function MMWeakAuraUpdater:CheckUpdateWeakAuras()
     MMWeakAuraUpdater.WeakAuras = MMWAs
     local hasUpdate = false
     for _, wa in ipairs(MMWeakAuraUpdater.WeakAuras) do
-        wa.found = false    
+        wa.found = false
 
         -- Iterate through all installed weakauras and check if they are out of date
         for name, data in pairs(WeakAurasSaved.displays) do
             if data.uid == wa.uid then
                 debug("WeakAura found: " .. wa.name)
+                wa.found = true
+                if not data.version then
+                    debug("WeakAura has no version.... must be in a pack...")
+                    wa.update = false
+                    break
+                end
                 wa.prvVersion = data.version
                 wa.update = wa.prvVersion < wa.version
-                wa.found = true
                 hasUpdate = hasUpdate or wa.update
                 break
             end
         end
 
-         -- Set defaults in case the weakaura is not found
+        -- Set defaults in case the weakaura is not found
         if not wa.found then
             wa.uid = nil
             wa.prvVersion = 0
-            wa.update = true 
+            wa.update = true
             hasUpdate = true
         end
     end
