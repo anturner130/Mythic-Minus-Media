@@ -14,9 +14,9 @@ WA\WA.xml
 MMAlias.lua
 MMAPI.lua
 
+MMWAUpdater.lua
 MythicMinusMedia.lua
 MythicMinusMediaOptions.lua
-MMWAUpdater.lua
 Connectors.lua
 Nicknames/Nicknames.xml
 
