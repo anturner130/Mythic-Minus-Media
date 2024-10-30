@@ -88,8 +88,9 @@ frame:RegisterEvent("PLAYER_LOGOUT")
 --Sounds
 -- register trump stroke with purple name
 
-LSM:Register("sound", "Trump Stroke", [[Interface\Addons\MythicMinusMedia\Media\Sounds\trump_stroke.ogg]])
-LSM:Register("sound", "Mario Jump", [[Interface\Addons\MythicMinusMedia\Media\Sounds\mario_jump.ogg]])
+LSM:Register("sound", "|cff00ff00Trump Stroke|r", [[Interface\Addons\MythicMinusMedia\Media\Sounds\trump_stroke.ogg]])
+LSM:Register("sound", "|cff00ff00Mario Jump|r", [[Interface\Addons\MythicMinusMedia\Media\Sounds\mario_jump.ogg]])
+LSM:Register("sound", "|cff00ff00Betrayal|r", [[Interface\Addons\MythicMinusMedia\Media\Sounds\betrayal.mp3]])
 
 -- --Fonts
 LSM:Register("font", "Expressway", [[Interface\Addons\MythicMinusMedia\Media\Fonts\Expressway.TTF]])
