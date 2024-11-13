@@ -66,7 +66,7 @@ frame:SetScript("OnEvent", function(self, event, arg1)
             MMMedia.externalLoaders[arg1]()
         end
 
-        if(arg1 >= "WeakAuras" and not wasLoaded)
+        if(not wasLoaded and WeakAuras)
         then
             debug("Updating WeakAuras." .. arg1)
             wasLoaded = true
