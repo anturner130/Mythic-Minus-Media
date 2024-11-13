@@ -1,1 +1,1 @@
-Northern Sky - Database & Functions updated from 39 to 40
+Mythic- Core updated from 30 to 31
