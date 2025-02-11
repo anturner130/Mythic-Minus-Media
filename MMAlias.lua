@@ -1,4 +1,4 @@
-local mm_alias_timestamp = '2025-01-26 19:26:26'
+local mm_alias_timestamp = '2025-02-11 12:40:57'
 
 MMAlias = {
 	['Ålåtår'] = 'Alatar',
@@ -138,6 +138,7 @@ MMAlias = {
 	['Bruba'] = 'Mitch',
 	['Nwâh'] = 'Nwah',
 	['Powerwindows'] = 'Nwah',
+	['Sweetestpete'] = 'Pete',
 	['Foxbrew'] = 'Poppa',
 	['Poppabdk'] = 'Poppa',
 	['Poppadh'] = 'Poppa',
@@ -202,4 +203,4 @@ MMAlias = {
 	['Derthknert'] = 'Turner',
 	['Alaturn'] = 'Turner',
 	['Yeetawh'] = 'Yeet',
-}		
+}	
