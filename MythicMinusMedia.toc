@@ -20,5 +20,4 @@ MythicMinusMediaOptions.lua
 Connectors.lua
 Nicknames/Nicknames.xml
 
-
-
+MMLoot.lua
