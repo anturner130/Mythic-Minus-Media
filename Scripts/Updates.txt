@@ -1,1 +1,1 @@
-Northern Sky - Database & Functions updated from 49 to 50
+External Alert updated from 51 to 52
